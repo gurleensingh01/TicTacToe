@@ -11,9 +11,9 @@ import CommonStyle from "./styles/CommonStyle";
 function Main(): React.JSX.Element {
     return (
         <SafeAreaView style={CommonStyle.container}>
-            <Home />
+            {/* <Home /> */}
             {/* <Selection /> */}
-            {/* <Game /> */}
+            <Game />
             {/* <GameOver /> */}
         </SafeAreaView>
     ); 
