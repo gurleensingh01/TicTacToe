@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import CommonStyle from "../styles/CommonStyle";
 
-function Game(): React.JSX.Element {
+function Game({ navigation }): React.JSX.Element {
     const [turn, setTurn] = useState("X");
     const [grid, setGrid] = useState(Array(9).fill(null));
     const [winningLine, setWinningLine] = useState<number[] | null>(null);
@@ -31,24 +31,18 @@ function Game(): React.JSX.Element {
 
         if (winningCombination) {
             setWinningLine(winningCombination);
-            Alert.alert(`${turn} wins!`);
-            setTimeout(resetGame, 3000);
+            // Navigate to GameOver screen with the winner
+            navigation.navigate("GameOver", { winner: turn });
             return;
         }
 
         if (!newGrid.includes(null)) {
-            Alert.alert("It's a tie!");
-            resetGame();
+            // Navigate to GameOver screen for a tie
+            navigation.navigate("GameOver", { winner: "Tie" });
             return;
         }
 
         setTurn(turn === "X" ? "O" : "X");
-    };
-
-    const resetGame = () => {
-        setGrid(Array(9).fill(null));
-        setTurn("X");
-        setWinningLine(null);
     };
 
     const getLineStyle = (combination: number[]) => {
@@ -72,9 +66,8 @@ function Game(): React.JSX.Element {
     };
 
     return (
-        <View style={[CommonStyle.container, { justifyContent: "flex-start" }, { marginTop: 20 }]}>
-            <Text style={[CommonStyle.text, { fontSize: 50 }]}>Tic Tac Toe</Text>
-
+        <View style={[CommonStyle.container, { justifyContent: "flex-start" }]}>
+            
             <View style={styles.secondView}>
                 <View style={{ flexDirection: "row" }}>
                     <Text style={styles.xStyle}>X</Text>
@@ -106,23 +99,6 @@ function Game(): React.JSX.Element {
                         })}
                     </View>
                 ))}
-            </View>
-
-            <View style={styles.scoreView}>
-                <View style={styles.p1Style}>
-                    <Text style={styles.scoreText}>P1</Text>
-                    <Text style={styles.scoreText}>0</Text>
-                </View>
-
-                <View style={styles.drawStyle}>
-                    <Text style={styles.scoreText}>Draw</Text>
-                    <Text style={styles.scoreText}>0</Text>
-                </View>
-
-                <View style={styles.p2Style}>
-                    <Text style={styles.scoreText}>P2</Text>
-                    <Text style={styles.scoreText}>0</Text>
-                </View>
             </View>
         </View>
     );
@@ -197,41 +173,6 @@ const styles = StyleSheet.create({
         color: "#FFFFFF",
         fontSize: 30,
         fontWeight: "bold",
-    },
-    p1Style: {
-        backgroundColor: "#31C3BD",
-        height: 80,
-        width: 100,
-        borderRadius: 10,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    drawStyle: {
-        backgroundColor: "#A8BFC9",
-        height: 80,
-        width: 100,
-        borderRadius: 10,
-        justifyContent: "center",
-        alignItems: "center",
-        marginHorizontal: 10,
-    },
-    p2Style: {
-        backgroundColor: "#F2B137",
-        height: 80,
-        width: 100,
-        borderRadius: 10,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    scoreView: {
-        flexDirection: "row",
-        justifyContent: "space-around",
-        width: "60%",
-    },
-    scoreText: {
-        fontSize: 18,
-        fontWeight: "bold",
-        color: "#1A2A33",
     },
     winningLine: {
         position: "absolute",
