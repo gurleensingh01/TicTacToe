@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import CommonStyle from "../styles/CommonStyle";
 
-function Game({ navigation }): React.JSX.Element {
+import { NavigationProp } from '@react-navigation/native';
+
+function Game({ navigation }: { navigation: NavigationProp<any> }): React.JSX.Element {
     const [turn, setTurn] = useState("X");
     const [grid, setGrid] = useState(Array(9).fill(null));
     const [winningLine, setWinningLine] = useState<number[] | null>(null);
@@ -100,8 +102,23 @@ function Game({ navigation }): React.JSX.Element {
                     </View>
                 ))}
             </View>
+            <View style={styles.scoreView}>
+                <View style={styles.p1Style}>
+                    <Text style={styles.scoreText}>P1</Text>
+                    <Text style={styles.scoreText}>0</Text>
+                </View>
+                <View style={styles.drawStyle}>
+                    <Text style={styles.scoreText}>Draw</Text>
+                    <Text style={styles.scoreText}>0</Text>
+                </View>
+                <View style={styles.p2Style}>
+                    <Text style={styles.scoreText}>P2</Text>
+                    <Text style={styles.scoreText}>0</Text>
+                </View>
+            </View>
         </View>
     );
+    
 }
 
 const styles = StyleSheet.create({
@@ -182,6 +199,42 @@ const styles = StyleSheet.create({
         zIndex: 1,
         borderRadius: 5,
     },
+    p1Style:{
+        backgroundColor:'#31C3BD',
+        height:80,
+        width:100,
+        borderRadius:10,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    drawStyle:{
+        backgroundColor:'#A8BFC9',
+        height:80,
+        width:100,
+        borderRadius:10,
+        justifyContent:'center',
+        alignItems:'center',
+        marginHorizontal:10
+    },
+    p2Style:{
+        backgroundColor:'#F2B137',
+        height:80,
+        width:100,
+        borderRadius:10,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    scoreView:{
+        flexDirection:"row",
+        justifyContent:"space-around",
+        width:"60%",
+        marginRight:50,
+    },
+    scoreText:{
+        fontSize:18,
+        fontWeight:'bold',
+        color:'#1A2A33'
+    }
 });
 
 export default Game;

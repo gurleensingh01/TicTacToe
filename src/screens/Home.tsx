@@ -2,15 +2,17 @@ import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import CommonStyle from "../styles/CommonStyle";
 
-function Home({ navigation }): React.JSX.Element {
+import { NavigationProp } from '@react-navigation/native';
+
+function Home({ navigation }: { navigation: NavigationProp<any> }): React.JSX.Element {
     return (
         <View style={CommonStyle.container}>
             {/* Title Section */}
             <View style={CommonStyle.titleContainer}>
-                <Text style={[CommonStyle.text, CommonStyle.title]}>Tic Tac Toe</Text>
-                <Text style={[CommonStyle.text, CommonStyle.subtitle]}>
-                    Let the best player win!
-                </Text>
+            <Text style={[CommonStyle.text, CommonStyle.subtitle, { fontStyle: 'italic' }]}>
+                Let's have fun !!
+            </Text>
+
             </View>
 
             {/* Start Button */}
@@ -18,7 +20,7 @@ function Home({ navigation }): React.JSX.Element {
                 style={CommonStyle.button}
                 onPress={() => navigation.navigate("Selection")}
             >
-                <Text style={CommonStyle.buttonText}>Start Game</Text>
+                <Text style={CommonStyle.buttonText}>Start</Text>
             </TouchableOpacity>
         </View>
     );

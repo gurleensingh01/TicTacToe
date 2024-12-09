@@ -8,11 +8,10 @@ const CommonStyle = StyleSheet.create({
         alignItems: 'center',
     },
     text: {
-        fontSize: 40,
+        fontSize: 50,
         textAlign: 'center',
         margin: 10,
         color: '#A8BFC9',
-        fontWeight: 'bold',
     },
     
     resultText: {
@@ -22,27 +21,20 @@ const CommonStyle = StyleSheet.create({
         marginBottom: 20,
     },
     button: {
-        backgroundColor: "#0057D9",
-        padding: 15,
+        backgroundColor: "#F2B137",
+        padding: 10,
         borderRadius: 10,
         marginVertical: 10,
-        width: "80%",
+        width: "50%",
         alignItems: "center",
     },
 
     buttonText: {
-        color: '#FFFFFF',
+        color: 'black',
         textAlign: 'center',
-        fontSize: 16,
+        fontSize: 48,
+        fontWeight: 'bold',
     },
-
-    playAgainButton: {
-        backgroundColor: "#31C3BD",
-    },
-    mainMenuButton: {
-        backgroundColor: "#F2B137",
-    },
-
     titleContainer: {
         marginBottom: 50,
         alignItems: "center",
