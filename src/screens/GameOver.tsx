@@ -21,8 +21,8 @@ function GameOver({ navigation, route }: GameOverProps): React.JSX.Element {
             <View style={styles.container}>
                 {/* Winner/Tie Message */}
             <View>
-                <Text style={[CommonStyle.text, CommonStyle.resultText]}>
-                    {winner === "Tie" ? "It's a Tie!" : `Player ${winner} Wins!`}
+                <Text style={[styles.winnerText]}>
+                    {winner === "Tie" ? "It's a Tie!" : `${winner} Wins!`}
                 </Text>
             </View>
 
@@ -72,7 +72,16 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 50,
         marginBottom: 200,
-    }});
+    },
+
+    winnerText: {
+    color: "#1F3641",
+    fontSize: 36,
+    fontWeight: "bold",
+    textAlign: "center",
+    margin: 10,
+    },
+});
 
 
 export default GameOver;
